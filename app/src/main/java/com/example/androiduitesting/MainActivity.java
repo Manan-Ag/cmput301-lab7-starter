@@ -2,6 +2,7 @@ package com.example.androiduitesting;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -35,6 +36,13 @@ public class MainActivity extends AppCompatActivity {
         dataList = new ArrayList<>();
 
         //dataList.addAll(Arrays.asList(cities));
+
+        cityList.setOnItemClickListener((adapterView, view, position, id) -> {
+            String cityName = dataList.get(position);
+            Intent intent = new Intent(MainActivity.this, ShowActivity.class);
+            intent.putExtra("city_name", cityName);
+            startActivity(intent);
+        });
 
         cityAdapter = new ArrayAdapter<>(this, R.layout.content, dataList);
 
